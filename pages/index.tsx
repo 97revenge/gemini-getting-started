@@ -1,3 +1,5 @@
+import "../app/globals.css";
+
 import { GetServerSideProps } from "next";
 
 export default function Home({ hello }: { hello: string }) {
