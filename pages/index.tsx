@@ -1,4 +1,3 @@
-import { CardWithForm } from "@/components/Card";
 import { RadioGroupDemo } from "@/components/RadioGroup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,12 +8,19 @@ import "@/styles/globals.css";
 
 import { GetServerSideProps } from "next";
 
+import dynamic from "next/dynamic";
+
+const CardDynamic = dynamic(() => import("../components/Card"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
+
 export default function Home({ hello }: { hello: string }) {
   return (
     <>
       <div className="h-screen w-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-blue-600 to-sky-900">
         <div className="w-full h-full flex items-start justify-center pt-32">
-          <CardWithForm>
+          <CardDynamic>
             <form>
               <div className="grid w-full items-center gap-4 ">
                 <div className="flex flex-col space-y-1.5">
@@ -45,7 +51,7 @@ export default function Home({ hello }: { hello: string }) {
                 </Button>
               </div>
             </form>
-          </CardWithForm>
+          </CardDynamic>
         </div>
       </div>
     </>

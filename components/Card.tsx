@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "./ui/textarea";
 
-export function CardWithForm({ ...props }) {
+export default function CardWithForm({ ...props }) {
   return (
     <Card className="sm:w-[800px] h-[430px] w-[430px]   ">
       <CardHeader>
