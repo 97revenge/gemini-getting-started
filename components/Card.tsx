@@ -7,20 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "./ui/textarea";
 
 export default function CardWithForm({ ...props }) {
   return (
-    <Card className="sm:w-[800px] h-[430px] w-[430px]   ">
+    <Card className="sm:w-[800px] h-auto w-[430px]   ">
       <CardHeader>
         <CardTitle>Create project</CardTitle>
         <CardDescription>Deploy your new project in one-click.</CardDescription>
