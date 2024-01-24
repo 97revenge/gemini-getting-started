@@ -10,6 +10,7 @@ import "@/styles/globals.css";
 import { GetServerSideProps } from "next";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
@@ -35,8 +36,25 @@ export default function Home() {
 
   return (
     <>
-      <div className="h-screen w-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-blue-600 to-sky-900">
-        <div className="w-full h-full flex items-start justify-center pt-32">
+      <div className="h-screen w-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
+        <div className=" w-full h-full flex flex-col sm:flex-row md:flex-row  items-start justify-center p-28">
+          <div className="mx-auto  w-auto   justify-center pt-12  text-center px-2 ">
+            <h2 className="text-3xl font-bold text-white md:text-3xl w-full">
+              Correção do Enem pela {/*  {...} */}
+              <div>
+                {" "}
+                <div className="flex w-full items-center justify-center align-baseline">
+                  <Image
+                    alt="gemini icon"
+                    width={250}
+                    height={250}
+                    src={"https://api.iconify.design/logos:google-gemini.svg"}
+                  />
+                </div>
+              </div>
+            </h2>
+          </div>
+
           <CardDynamic>
             <form onClick={(e) => e.preventDefault()}>
               <div className="grid w-full items-center gap-4 ">
@@ -85,7 +103,6 @@ export default function Home() {
                 <Button size={"default"} type="submit">
                   Enviar
                 </Button>
-                <button onClick={handlePaste}>Paste Content</button>
               </div>
             </form>
           </CardDynamic>
