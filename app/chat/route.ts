@@ -1,4 +1,5 @@
 import { model } from "@/lib/gemini/model";
+import { NextApiRequest, NextApiResponse } from "next";
 
 namespace Config {
   export const title =
@@ -18,12 +19,24 @@ namespace Config {
   `;
 }
 
-export async function GET(request: Request) {
+export async function GET(req: NextApiRequest) {
   const prompt = `me de uma revisao  de uma redação do enem que eu vou te entregar : 
     TITULO DA REDAÇÃO  : ${Config.title}
     REDAÇÃO : ${Config.read}
     
     `;
+
+  const newChat = [{ role: "user", parts: prompt }];
+
+  const chat = await model.startChat({
+    history: [
+      {
+        role: "user",
+        parts:
+          "Aprenda bastante super nomenclatura brasileira pt-br em textos e redações",
+      },
+    ],
+  });
 
   const result = await model.generateContent(prompt);
 
@@ -31,5 +44,5 @@ export async function GET(request: Request) {
 
   const text = response.text();
 
-  return Response.json({ message: text });
+  return Response.json(text);
 }

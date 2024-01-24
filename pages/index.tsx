@@ -1,4 +1,5 @@
 import { RadioGroupDemo } from "@/components/RadioGroup";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import PopoverDemo from "@/components/Popover";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
   loading: () => <p>Loading...</p>,
@@ -38,7 +40,7 @@ export default function Home() {
     <>
       <div className="h-screen w-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
         <div className=" w-full h-full flex flex-col sm:flex-row md:flex-row  items-start justify-center p-28">
-          <div className="mx-auto  w-auto   justify-center pt-12  text-center px-2 ">
+          <div className="mx-auto  w-auto   justify-center pt-12  text-center px-4 ">
             <h2 className="text-3xl font-bold text-white md:text-3xl w-full">
               Correção do Enem pela {/*  {...} */}
               <div>
@@ -77,6 +79,9 @@ export default function Home() {
                       <Label htmlFor="r3">Compact</Label>
                     </div>
                   </RadioGroupDemo>
+                  <div className="w-28 h-auto  py-2">
+                    <PopoverDemo></PopoverDemo>
+                  </div>
                 </div>
               </div>
               <div className="grid w-full gap-2">
@@ -100,6 +105,11 @@ export default function Home() {
                     </div>
                   </>
                 )}
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms">Accept terms and conditions</Label>
+                </div>
+
                 <Button size={"default"} type="submit">
                   Enviar
                 </Button>
