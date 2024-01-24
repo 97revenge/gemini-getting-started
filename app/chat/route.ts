@@ -23,6 +23,7 @@ export async function GET(req: NextApiRequest) {
   const prompt = `me de uma revisao  de uma redação do enem que eu vou te entregar : 
     TITULO DA REDAÇÃO  : ${Config.title}
     REDAÇÃO : ${Config.read}
+    Formate todo o resultado para markdown . 
     
     `;
 
