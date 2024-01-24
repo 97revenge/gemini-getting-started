@@ -26,24 +26,11 @@ export default function Home() {
     text: "",
   });
 
-  const textAreaRef = useRef(null as any);
-  const [pastedContent, setPastedContent] = useState("");
-
   const [view, setView] = useState<boolean>(false);
-
-  const handlePaste = () => {
-    navigator.clipboard.readText().then((clipboardContent) => {
-      // Check if the textarea is available before setting the value
-      if (textAreaRef.current) {
-        textAreaRef.current.value = clipboardContent;
-        setPastedContent(clipboardContent);
-      }
-    });
-  };
 
   return (
     <>
-      <div className=" h-screen max-w-[1000-px] w-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
+      <div className=" h-[100%] w-[100%] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
         <div className="  flex flex-col sm:flex-row md:flex-row  items-center justify-center ">
           <div className="   justify-center   text-center py-6 xl:px-4 lg:px-4 md:px-4 sm:py-6  ">
             <h2 className="text-3xl font-bold text-white md:text-3xl w-full">
@@ -126,9 +113,6 @@ export default function Home() {
                         text: e.target.value,
                       })
                     }
-                    ref={() => {
-                      return handlePaste();
-                    }}
                   />
                   {state.text && (
                     <>

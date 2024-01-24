@@ -1,10 +1,17 @@
 import { model } from "@/lib/gemini/model";
 import jwt, { type Jwt } from "jsonwebtoken";
-import { NextApiRequest, NextApiResponse } from "next";
+
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 namespace Config {
+  export const temperature = {
+    consistent: 0.2,
+    balanced: 0.5,
+    adaptive: 0.7,
+    criative: 0.9,
+  };
+
   export const title = "Educação inclusiva - 2017";
   export const read = `
   No Brasil, o início do processo de educação de surdos remonta ao Segundo Reinado. No entanto, esse ato não se configurou como inclusivo, já que se caracterizou pelo estabelecimento de um “apartheid” educacional, ou seja, uma escola exclusiva para tal público, segregando-o dos que seriam considerados “normais” pela população. Assim, notam-se desafios ligados à formação educacional das pessoas com dificuldade auditiva, seja por estereotipação da sociedade civil, seja por passividade governamental. Portanto, haja vista que a educação é fundamental para o desenvolvimento econômico do referido público e, logo, da nação, ela deve ser efetivada aos surdos pelos agentes adequados, a partir da resolução dos entraves vinculados a ela.
@@ -27,7 +34,9 @@ export async function GET(req: NextRequest) {
   const prompt = `me de uma revisao  de uma redação do enem que eu vou te entregar : 
     TITULO DA REDAÇÃO  : ${Config.title}
     REDAÇÃO : ${Config.read}
-    Formate todo o resultado para markdown e muito bem formatado !!! 
+    Formate todo o resultado para .md (markdown) bem formatado !!!
+    esta revisao precisa ter uma nota de 0 a 900 . 
+    
     
     `;
 
