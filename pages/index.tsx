@@ -12,8 +12,10 @@ import { GetServerSideProps } from "next";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import PopoverDemo from "@/components/Popover";
+import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
   loading: () => <p>Loading...</p>,
@@ -25,8 +27,20 @@ export default function Home() {
     title: "",
     text: "",
   });
+  const route = useRouter();
 
-  const [view, setView] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    route.push({
+      pathname: `/chat`,
+      query: `title=${data.title}?text=${data.text}`,
+    });
+  };
 
   return (
     <>
@@ -49,7 +63,7 @@ export default function Home() {
           </div>
           <div className="flex h-screen  items-center relative bottom-16 xl:bottom-0 lg:bottom-0 md:bottom-0 ">
             <CardDynamic>
-              <form onClick={(e) => e.preventDefault()}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid w-full items-center gap-y-4 ">
                   <div className="flex flex-col ">
                     <Label htmlFor="title" className="p-1">
@@ -57,7 +71,7 @@ export default function Home() {
                     </Label>
                     <Input
                       id="title"
-                      onFocus={() => setView(!view)}
+                      {...register("title")}
                       placeholder="Titulo da  redação"
                       onChange={(e) =>
                         setState({
@@ -107,6 +121,7 @@ export default function Home() {
                 <div className="grid w-full gap-2">
                   <Textarea
                     placeholder="Cole sua redação aqui"
+                    {...register("text")}
                     onChange={(e) =>
                       setState({
                         ...state,
