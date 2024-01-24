@@ -2,25 +2,28 @@ import { model } from "@/lib/gemini/model";
 import jwt, { type Jwt } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import { cookies } from "next/headers";
+import { NextRequest } from "next/server";
 
 namespace Config {
-  export const title =
-    "O estigma associado às doenças mentais na sociedade brasileira - 2020";
+  export const title = "Educação inclusiva - 2017";
   export const read = `
-  De acordo com o filósofo Platão, a associação entre saúde física e mental seria imprescindível para a manutenção da integridade humana. Nesse contexto, elucida-se a necessidade de maior atenção ao aspecto psicológico, o qual, além de estar suscetível a doenças, também é alvo de estigmatização na sociedade brasileira. Tal discriminação é configurada a partir da carência informacional concatenada à idealização da vida nas redes sociais, o que gera a falta de suporte aos necessitados. Isso mostra que esse revés deve ser solucionado urgentemente.
+  No Brasil, o início do processo de educação de surdos remonta ao Segundo Reinado. No entanto, esse ato não se configurou como inclusivo, já que se caracterizou pelo estabelecimento de um “apartheid” educacional, ou seja, uma escola exclusiva para tal público, segregando-o dos que seriam considerados “normais” pela população. Assim, notam-se desafios ligados à formação educacional das pessoas com dificuldade auditiva, seja por estereotipação da sociedade civil, seja por passividade governamental. Portanto, haja vista que a educação é fundamental para o desenvolvimento econômico do referido público e, logo, da nação, ela deve ser efetivada aos surdos pelos agentes adequados, a partir da resolução dos entraves vinculados a ela.
 
 
-Sob essa análise, é necessário salientar que fatores relevantes são combinados na estruturação dessa problemática. Dentre eles, destaca-se a ausência de informações precisas e contundentes a respeito das doenças mentais, as quais, muitas vezes, são tratadas com descaso e desrespeito. Essa falta de subsídio informacional é grave, visto que impede que uma grande parcela da população brasileira conheça a seriedade das patologias psicológicas, sendo capaz de comprometer a realização de tratamentos adequados, a redução do sofrimento do paciente e a sua capacidade de recuperação. Somada a isso, a veiculação virtual de uma vida idealizada também contribui para a construção dessa caótica conjuntura, pois é responsável pela crença equivocada de que a existência humana pode ser feita, isto é, livre de obstáculos e transtornos. Esse entendimento falho da realidade fez com que os indivíduos que não se encaixem nos padrões difundidos, em especial no que concerne à saúde mental, sejam vítimas de preconceito e exclusão. Evidencia-se, então, que a carência de conhecimento associado à irrealidade digitalmente disseminada arquitetam esse lastimável panorama.
+Sob esse viés, pode-se apontar como um empecilho à implementação desse direito, reconhecido por mecanismos legais, a discriminação enraizada em parte da sociedade, inclusive dos próprios responsáveis por essas pessoas com limitação. Isso por ser explicado segundo o sociólogo Talcott Parsons, o qual diz que a família é uma máquina que produz personalidades humanas, o que legitima a ideia de que o preconceito por parte de muitos pais dificulta o acesso à educação pelos surdos. Tal estereótipo está associado a uma possível invalidez da pessoa com deficiência e é procrastinado, infelizmente, desde o Período Clássico grego, em que deficientes eram deixados para morrer por serem tratados como insignificantes, o que dificulta, ainda hoje, seu pleno desenvolvimento e sua autonomia.
 
 
-Consequentemente, tais motivadores geram incontestáveis e sérios efeitos na vida dos indivíduos que sofrem de algum gênero de doença mental. Tendo isso em vista, o acolhimento insuficiente e a falta de tratamento são preocupantes, uma vez que os acometidos precisam de compreensão, respeito e apoio para disporem de mais energia e motivação no enfrentamento dessa situação, além de acompanhamento médico e psicológico também ser essencial para que a pessoa entenda seus sentimentos e organize suas estruturas psicológicas de uma forma mais salutar e emancipadora. O filme “Toc toc” retrata precisamente o processo de cura de um grupo de amigos que são diagnosticados com transtornos de ordem psicológica, revelando que o carinho fraternal e o entendimento mútuo são ferramentas fundamentais no desenvolvimento integral da saúde. Mostra-se, assim, que a estigmatização de doentes mentais produz a escassez de elementos primordiais para que eles possam ser tratados e curados.
+Além do mais, ressalte-se que o Poder Público incrementou o acesso do público abordado ao sistema educacional brasileiro ao tornar a Libras uma língua secundária oficial e ao incluí-la, no mínimo, à grade curricular pública. Contudo, devido à falta de fiscalização e de políticas públicas ostensivas por parte de algumas gestões, isso não é bem efetivado. Afinal, dados estatísticos mostram que o número de brasileiros com deficiência auditiva vem diminuindo tanto em escolas inclusivas – ou bilíngues -, como em exclusivas, a exemplo daquela criada no Segundo Reinado. Essa situação abjeta está relacionada à inexistência ou à incipiência de professores que dominem a Libras e à carência de aulas proficientes, inclusivas e proativas, o que deveria ser atenuado por meio de uma maior gerência do Estado nesse âmbito escolar.
 
 
-Urge, portanto, que o Ministério da Saúde crie uma plataforma, por meio de recursos digitais, que contenha informações a respeito das doenças mentais e que proponha comportamentos e atitudes adequadas a serem adotados durante uma interação com uma pessoa que esteja com alguma patologia do gênero, além de divulgar os sinais mais frequentes relacionados à ausência de saúde psicológica. Essa medida promoverá uma maior rede informacional e propiciará um maior apoio aos necessitados. Ademais, também cabe à sociedade e a mídia elaborar campanhas que preguem a contrariedade ao preconceito no que tange os doentes dessa natureza, o que pode ser efetivado através de mobilizações em redes sociais e por intermédio de programas televisivos com viés informativo. Tal iniciativa é capaz de engajar a população brasileira no combate a esse tipo de discriminação. Com isso, a ideia platônica será convertida em realidade no Brasil.
+Diante do exposto, cabe às instituições de ensino com proatividade o papel de deliberar acerca dessa limitação em palestras elucidativas por meio de exemplos em obras literárias, dados estatísticos e depoimentos de pessoas envolvidas com o tema, para que a sociedade civil, em especial os pais de surdos, não seja complacente com a cultura de estereótipos e preconceitos difundidos socialmente. Outrossim, o próprio público deficiente deve alertar a outra parte da população sobre seus direitos e suas possibilidades no Estado civil a partir da realização de dias de conscientização na urbe e da divulgação de textos proativos em páginas virtuais, como “Quebrando o Tabu”. Por fim, ativistas políticos devem realizar mutirões no Ministério ou na Secretaria de Educação, pressionando os demiurgos indiferentes à problemática abordada, com o fito de incentivá-los a profissionalizarem adequadamente os professores – para que todos saibam, no mínimo, o básico de Libras – e a efetivarem o estudo da Língua Brasileira de Sinais, por meio da disponibilização de verbas e da criação de políticas públicas convenientes, contrariando a teórica inclusão da primeira escola de surdos brasileira.
+
+
+
   `;
 }
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   const prompt = `me de uma revisao  de uma redação do enem que eu vou te entregar : 
     TITULO DA REDAÇÃO  : ${Config.title}
     REDAÇÃO : ${Config.read}
@@ -40,5 +43,8 @@ export async function GET(req: NextApiRequest) {
 
   cookieStore.set("chat", instance);
 
-  return Response.json(text);
+  return (
+    Response.json(instance) &&
+    Response.redirect("http://localhost:3000/service")
+  );
 }
