@@ -1,21 +1,22 @@
 import { model } from "@/lib/gemini/model";
+import jwt, { type Jwt } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
+import { cookies } from "next/headers";
 
 namespace Config {
   export const title =
-    "Desafios para a valorização de comunidades e povos tradicionais no Brasil - 2022";
+    "O estigma associado às doenças mentais na sociedade brasileira - 2020";
   export const read = `
-  O poeta modernista Oswald de Andrade relata, em "Erro de Português", que, sob um dia de chuva, o índio foi vestido pelo português - uma denúncia à aculturação sofrida pelos povos indígenas com a chegada dos europeus ao território brasileiro. Paralelamente, no Brasil atual, há a manutenção de práticas prejudiciais não só aos silvícolas, mas também aos demais povos e comunidades tradicionais, como os pescadores. Com efeito, atuam como desafios para a valorização desses grupos a educação deficiente acerca do tema e a ausência do desenvolvimento sustentável.
-  
-  
-  Diante desse cenário, existe a falta da promoção de um ensino eficiente sobre as populações tradicionais. Sob esse viés, as escolas, ao abordarem tais povos por meio de um ponto de vista histórico eurocêntrico, enraízam no imaginário estudantil a imagem de aborígenes cujas vivências são marcadas pela defasagem tecnológica. A exemplo disso, há o senso comum de que os indígenas são selvagens, alheios aos benefícios do mundo moderno, o que, consequentemente, gera um preconceito, manifestado em indagações como “o índio tem ‘smartphone’ e está lutando pela demarcação de terras?” – ideia essa que deslegitima a luta dos silvícolas. Entretanto, de acordo com a Teoria do Indigenato, defendida pelo ministro Edson Fachin, do Supremo Tribunal Federal, o direito dos povos tradicionais à terra é inato, sendo anterior, até, à criação do Estado brasileiro. Dessa forma, por não ensinarem tal visão, os colégios fometam a desvalorização das comunidades tradicionais, mediante o desenvolvimento de um pensamento discriminatório nos alunos.
-  
-  
-  Além disso, outro desafio para o reconhecimento desses indivíduos é a carência do progresso sustentável. Nesse contexto, as entidades mercadológicas que atuam nas áreas ocupadas pelas populações tradicionais não necessariamente se preocupam com a sua preservação, comportamento no qual se valoriza o lucro em detrimento da harmonia entre a natureza e as comunidades em questão. À luz disso, há o exemplo do que ocorre aos pescadores, cujos rios são contaminados devido ao garimpo ilegal, extremamente comum na Região Amazônica. Por conseguinte, o povo que sobrevive a partir dessa atividade é prejudicado pelo que a Biologia chama de magnificação trófica, quando metais pesados acumulam-se nos animais de uma cadeia alimentar – provocando a morte de peixes e a infecção de humanos por mercúrio. Assim, as indústrias que usam os recursos naturais de forma irresponsável não promovem o desenvolvimento sustentável e agem de maneira nociva às sociedades tradicionais.
-  
-  
-  Portanto, é essencial que o governo mitigue os desafios supracitados. Para isso, o Ministério da Educação – órgão responsável pelo estabelecimento da grade curricular das escolas – deve educar os alunos a respeito dos empecilhos à preservação dos indígenas, por meio da inserção da matéria “Estudos Indigenistas” no ensino básico, a fim de explicar o contexto dos silvícolas e desconstruir o preconceito. Ademais, o Ministério do Desenvolvimento – pasta instituidora da Política Nacional de Desenvolvimento Sustentável dos Povos e Comunidades Tradicionais – precisa fiscalizar as atividades econômicas danosas às sociedades vulneráveis, visando à valorização de tais pessoas, mediante canais de denúncias."
-  
+  De acordo com o filósofo Platão, a associação entre saúde física e mental seria imprescindível para a manutenção da integridade humana. Nesse contexto, elucida-se a necessidade de maior atenção ao aspecto psicológico, o qual, além de estar suscetível a doenças, também é alvo de estigmatização na sociedade brasileira. Tal discriminação é configurada a partir da carência informacional concatenada à idealização da vida nas redes sociais, o que gera a falta de suporte aos necessitados. Isso mostra que esse revés deve ser solucionado urgentemente.
+
+
+Sob essa análise, é necessário salientar que fatores relevantes são combinados na estruturação dessa problemática. Dentre eles, destaca-se a ausência de informações precisas e contundentes a respeito das doenças mentais, as quais, muitas vezes, são tratadas com descaso e desrespeito. Essa falta de subsídio informacional é grave, visto que impede que uma grande parcela da população brasileira conheça a seriedade das patologias psicológicas, sendo capaz de comprometer a realização de tratamentos adequados, a redução do sofrimento do paciente e a sua capacidade de recuperação. Somada a isso, a veiculação virtual de uma vida idealizada também contribui para a construção dessa caótica conjuntura, pois é responsável pela crença equivocada de que a existência humana pode ser feita, isto é, livre de obstáculos e transtornos. Esse entendimento falho da realidade fez com que os indivíduos que não se encaixem nos padrões difundidos, em especial no que concerne à saúde mental, sejam vítimas de preconceito e exclusão. Evidencia-se, então, que a carência de conhecimento associado à irrealidade digitalmente disseminada arquitetam esse lastimável panorama.
+
+
+Consequentemente, tais motivadores geram incontestáveis e sérios efeitos na vida dos indivíduos que sofrem de algum gênero de doença mental. Tendo isso em vista, o acolhimento insuficiente e a falta de tratamento são preocupantes, uma vez que os acometidos precisam de compreensão, respeito e apoio para disporem de mais energia e motivação no enfrentamento dessa situação, além de acompanhamento médico e psicológico também ser essencial para que a pessoa entenda seus sentimentos e organize suas estruturas psicológicas de uma forma mais salutar e emancipadora. O filme “Toc toc” retrata precisamente o processo de cura de um grupo de amigos que são diagnosticados com transtornos de ordem psicológica, revelando que o carinho fraternal e o entendimento mútuo são ferramentas fundamentais no desenvolvimento integral da saúde. Mostra-se, assim, que a estigmatização de doentes mentais produz a escassez de elementos primordiais para que eles possam ser tratados e curados.
+
+
+Urge, portanto, que o Ministério da Saúde crie uma plataforma, por meio de recursos digitais, que contenha informações a respeito das doenças mentais e que proponha comportamentos e atitudes adequadas a serem adotados durante uma interação com uma pessoa que esteja com alguma patologia do gênero, além de divulgar os sinais mais frequentes relacionados à ausência de saúde psicológica. Essa medida promoverá uma maior rede informacional e propiciará um maior apoio aos necessitados. Ademais, também cabe à sociedade e a mídia elaborar campanhas que preguem a contrariedade ao preconceito no que tange os doentes dessa natureza, o que pode ser efetivado através de mobilizações em redes sociais e por intermédio de programas televisivos com viés informativo. Tal iniciativa é capaz de engajar a população brasileira no combate a esse tipo de discriminação. Com isso, a ideia platônica será convertida em realidade no Brasil.
   `;
 }
 
@@ -23,27 +24,21 @@ export async function GET(req: NextApiRequest) {
   const prompt = `me de uma revisao  de uma redação do enem que eu vou te entregar : 
     TITULO DA REDAÇÃO  : ${Config.title}
     REDAÇÃO : ${Config.read}
-    Formate todo o resultado para markdown . 
+    Formate todo o resultado para markdown e muito bem formatado !!! 
     
     `;
-
-  const newChat = [{ role: "user", parts: prompt }];
-
-  const chat = await model.startChat({
-    history: [
-      {
-        role: "user",
-        parts:
-          "Aprenda bastante super nomenclatura brasileira pt-br em textos e redações",
-      },
-    ],
-  });
 
   const result = await model.generateContent(prompt);
 
   const response = await result.response;
 
   const text = response.text();
+
+  const instance = await jwt.sign(text, String(process.env.JWT_TOKEN));
+
+  const cookieStore = cookies();
+
+  cookieStore.set("chat", instance);
 
   return Response.json(text);
 }
