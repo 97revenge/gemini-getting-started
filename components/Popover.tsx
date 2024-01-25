@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export default function PopoverDemo() {
+export default function PopoverDemo({ ...props }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -23,8 +23,8 @@ export default function PopoverDemo() {
           </div>
           <div className="grid gap-2">
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
-              <Input id="number" defaultValue="0%" className="col-span-2 h-8" />
+              <Label htmlFor="number">Valor</Label>
+              <div {...props}></div>
             </div>
           </div>
         </div>

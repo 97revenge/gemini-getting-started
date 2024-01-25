@@ -16,6 +16,7 @@ import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import Popover from "@/components/Popover";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
   loading: () => <p>Loading...</p>,
@@ -36,10 +37,7 @@ export default function Home() {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    route.push({
-      pathname: `/api/create`,
-      query: `title=${data.title}?text=${data.text}`,
-    });
+    alert(JSON.stringify(data));
   };
 
   return (
@@ -64,7 +62,7 @@ export default function Home() {
           <div className="flex h-screen  items-center relative bottom-16 xl:bottom-0 lg:bottom-0 md:bottom-0 ">
             <CardDynamic>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid w-full items-center gap-y-4 ">
+                <div className="grid w-full items-center gap-y-2 ">
                   <div className="flex flex-col ">
                     <Label htmlFor="title" className="p-1">
                       Titulo
@@ -96,26 +94,20 @@ export default function Home() {
                       </>
                     )}
                   </div>
-                  <div className="flex flex-col space-y-1.5 relative top-1">
-                    <RadioGroupDemo>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="consistent" id="r1" />
-                        <Label htmlFor="r1">Consistente</Label>
+                  <div className="h-auto py-2 relative bottom-1">
+                    <Popover>
+                      <div className="flex flex-row w-[48px] gap-x-2 items-start justify-between align-baseline ">
+                        <Button className="w-3 ml-2">+</Button>
+                        <Input
+                          id="number"
+                          defaultValue=""
+                          value={0.2}
+                          {...register("temperature")}
+                          className="w-12 h-8"
+                        />
+                        <Button className="w-3">-</Button>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="balanced" id="r2" />
-                        <Label htmlFor="r2">Balanceada</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="adaptive" id="r3" />
-                        <Label htmlFor="r3">Adaptativa</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="criative" id="r3" />
-                        <Label htmlFor="r3">Criativa</Label>
-                      </div>
-                    </RadioGroupDemo>
-                    <div className="w-28 h-auto  py-2"></div>
+                    </Popover>
                   </div>
                 </div>
                 <div className="grid w-full gap-2">
