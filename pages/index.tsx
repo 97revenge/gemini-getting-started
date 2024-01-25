@@ -28,6 +28,9 @@ export default function Home() {
     title: "",
     text: "",
   });
+
+  const [tempState, setTempState] = useState<number>(0.2);
+
   const route = useRouter();
 
   const {
@@ -97,15 +100,29 @@ export default function Home() {
                   <div className="h-auto py-2 relative bottom-1">
                     <Popover>
                       <div className="flex flex-row w-[48px] gap-x-2 items-start justify-between align-baseline ">
-                        <Button className="w-3 ml-2">+</Button>
+                        <Button
+                          className="w-3 ml-2"
+                          onClick={() =>
+                            setTempState((state) => state + tempState)
+                          }
+                        >
+                          +
+                        </Button>
                         <Input
                           id="number"
                           defaultValue=""
-                          value={0.2}
+                          value={tempState}
                           {...register("temperature")}
                           className="w-12 h-8"
                         />
-                        <Button className="w-3">-</Button>
+                        <Button
+                          onClick={() =>
+                            setTempState((state) => state - tempState)
+                          }
+                          className="w-3"
+                        >
+                          -
+                        </Button>
                       </div>
                     </Popover>
                   </div>
@@ -137,7 +154,12 @@ export default function Home() {
                     </>
                   )}
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
+                    <Checkbox
+                      id="terms"
+                      onClick={() => {
+                        register("terms", { value: true });
+                      }}
+                    />
                     <Label htmlFor="terms">Aceito os termos e condições </Label>
                   </div>
 
