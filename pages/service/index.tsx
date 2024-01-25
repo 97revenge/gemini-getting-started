@@ -35,9 +35,8 @@ export default function Page({ response }: { response: any }) {
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
 ) => {
-  const chat = ctx.req.cookies.chat;
-
-  const response = jwt.verify(String(chat), String(process.env.JWT_TOKEN));
+  const { text } = ctx.query;
+  const response = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   return {
     props: {

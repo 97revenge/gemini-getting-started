@@ -37,7 +37,7 @@ export default function Home() {
 
   const onSubmit = (data: any) => {
     route.push({
-      pathname: `/chat`,
+      pathname: `/api/create`,
       query: `title=${data.title}?text=${data.text}`,
     });
   };

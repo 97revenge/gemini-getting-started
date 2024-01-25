@@ -3,9 +3,8 @@ import jwt, { type Jwt } from "jsonwebtoken";
 import { NextApiRequest } from "next";
 
 import { cookies } from "next/headers";
-import { NextRequest } from "next/server";
 
-namespace Config {
+export namespace Config {
   export const temperature = {
     consistent: 0.2,
     balanced: 0.5,
@@ -13,15 +12,20 @@ namespace Config {
     criative: 0.9,
   };
 
-  export const title = "Educação inclusiva - 2017";
+  export const title =
+    "A Persistência da Violência contra a Mulher na Sociedade Brasileira - 2015";
   export const read = `
-    No Brasil, o início do processo de educação de surdos remonta ao Segundo Reinado. No entanto, esse ato não se configurou como inclusivo, já que se caracterizou pelo estabelecimento de um “apartheid” educacional, ou seja, uma escola exclusiva para tal público, segregando-o dos que seriam considerados “normais” pela população. Assim, notam-se desafios ligados à formação educacional das pessoas com dificuldade auditiva, seja por estereotipação da sociedade civil, seja por passividade governamental. Portanto, haja vista que a educação é fundamental para o desenvolvimento econômico do referido público e, logo, da nação, ela deve ser efetivada aos surdos pelos agentes adequados, a partir da resolução dos entraves vinculados a ela.
+  Historicamente, o papel feminino nas sociedades ocidentais foi subjugado aos interesses masculinos e tal paradigma só começou a ser contestado em meados do século XX, tendo a francesa Simone de Beauvoir como expoente. Conquanto tenham sido obtidos avanços no que se refere aos direitos civis, a violência contra a mulher é uma problemática persistente no Brasil, uma vez que ela se dá- na maioria das vezes- no ambiente doméstico. Essa situação dificulta as denúncias contra os agressores, pois muitas mulheres temem expor questões que acreditam ser de ordem particular.
 
-  Sob esse viés, pode-se apontar como um empecilho à implementação desse direito, reconhecido por mecanismos legais, a discriminação enraizada em parte da sociedade, inclusive dos próprios responsáveis por essas pessoas com limitação. Isso por ser explicado segundo o sociólogo Talcott Parsons, o qual diz que a família é uma máquina que produz personalidades humanas, o que legitima a ideia de que o preconceito por parte de muitos pais dificulta o acesso à educação pelos surdos. Tal estereótipo está associado a uma possível invalidez da pessoa com deficiência e é procrastinado, infelizmente, desde o Período Clássico grego, em que deficientes eram deixados para morrer por serem tratados como insignificantes, o que dificulta, ainda hoje, seu pleno desenvolvimento e sua autonomia.
 
-  Além do mais, ressalte-se que o Poder Público incrementou o acesso do público abordado ao sistema educacional brasileiro ao tornar a Libras uma língua secundária oficial e ao incluí-la, no mínimo, à grade curricular pública. Contudo, devido à falta de fiscalização e de políticas públicas ostensivas por parte de algumas gestões, isso não é bem efetivado. Afinal, dados estatísticos mostram que o número de brasileiros com deficiência auditiva vem diminuindo tanto em escolas inclusivas – ou bilíngues -, como em exclusivas, a exemplo daquela criada no Segundo Reinado. Essa situação abjeta está relacionada à inexistência ou à incipiência de professores que dominem a Libras e à carência de aulas proficientes, inclusivas e proativas, o que deveria ser atenuado por meio de uma maior gerência do Estado nesse âmbito escolar.
+Com efeito, ao longo das últimas décadas, a participação feminina ganhou destaque nas representações políticas e no mercado de trabalho. As relações na vida privada, contudo, ainda obedecem a uma lógica sexista em algumas famílias. Nesse contexto, a agressão parte de um pai, irmão, marido ou filho; condição de parentesco essa que desencoraja a vítima a prestar queixas, visto que há um vínculo institucional e afetivo que ela teme romper.
 
-  Diante do exposto, cabe às instituições de ensino com proatividade o papel de deliberar acerca dessa limitação em palestras elucidativas por meio de exemplos em obras literárias, dados estatísticos e depoimentos de pessoas envolvidas com o tema, para que a sociedade civil, em especial os pais de surdos, não seja complacente com a cultura de estereótipos e preconceitos difundidos socialmente. Outrossim, o próprio público deficiente deve alertar a outra parte da população sobre seus direitos e suas possibilidades no Estado civil a partir da realização de dias de conscientização na urbe e da divulgação de textos proativos em páginas virtuais, como “Quebrando o Tabu”. Por fim, ativistas políticos devem realizar mutirões no Ministério ou na Secretaria de Educação, pressionando os demiurgos indiferentes à problemática abordada, com o fito de incentivá-los a profissionalizarem adequadamente os professores – para que todos saibam, no mínimo, o básico de Libras – e a efetivarem o estudo da Língua Brasileira de Sinais, por meio da disponibilização de verbas e da criação de políticas públicas convenientes, contrariando a teórica inclusão da primeira escola de surdos brasileira.
+
+Outrossim, é válido salientar que a violência de gênero está presente em todas as camadas sociais, camuflada em pequenos hábitos cotidianos. Ela se revela não apenas na brutalidade dos assassinatos, mas também nos atos de misoginia e ridicularização da figura feminina em ditos populares, piadas ou músicas. Essa é a opressão simbólica da qual trata o sociólogo Pierre Bordieu: a violação aos Direitos Humanos não consiste somente no embate físico, o desrespeito está –sobretudo- na perpetuação de preconceitos que atentam contra a dignidade da pessoa humana ou de um grupo social.
+
+
+Destarte, é fato que o Brasil encontra-se alguns passos à frente de outros países o combate à violência contra a mulher, por ter promulgado a Lei Maria da Penha. Entretanto, é necessário que o Governo reforce o atendimento às vítimas, criando mais delegacias especializadas, em turnos de 24 horas, para o registro de queixas. Por outro lado, uma iniciativa plausível a ser tomada pelo Congresso Nacional é a tipificação do feminicídio como crime de ódio e hediondo, no intuito de endurecer as penas para os condenados e assim coibir mais violações. É fundamental que o Poder Público e a sociedade – por meio de denúncias – combatam praticas machistas e a execrável prática do feminicídio.
+
 
     `;
 }
@@ -32,6 +36,7 @@ export async function GET(req: Request) {
     REDAÇÃO : ${Config.read}
     Formate todo o resultado para .md (markdown) bem formatado !!!
     esta revisao precisa ter uma nota de 0 a 900 .
+    respire fundo e me de um  otimo resultado !!!! 
 
     `;
 
