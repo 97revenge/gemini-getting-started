@@ -40,7 +40,27 @@ export default function Home() {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
+    route.push({
+      pathname: "api/create",
+      query: `title=${data.title}?text=${data.text}`,
+    });
+  };
+
+  const [clipboardContent, setClipboardContent] = useState("");
+
+  const handlePaste = async () => {
+    try {
+      // Read the text from the clipboard
+      const textFromClipboard = await navigator.clipboard.readText();
+
+      // Set the clipboard content in the component state
+      setClipboardContent(textFromClipboard);
+
+      // Do something with the pasted content
+      console.log("Pasted content:", textFromClipboard);
+    } catch (error) {
+      console.error("Error reading from clipboard:", error);
+    }
   };
 
   return (
@@ -130,6 +150,7 @@ export default function Home() {
                 <div className="grid w-full gap-2">
                   <Textarea
                     placeholder="Cole sua redação aqui"
+                    defaultValue={clipboardContent}
                     {...register("text")}
                     onChange={(e) =>
                       setState({
@@ -137,7 +158,7 @@ export default function Home() {
                         text: e.target.value,
                       })
                     }
-                  />
+                  ></Textarea>
                   {state.text && (
                     <>
                       <div
@@ -153,6 +174,16 @@ export default function Home() {
                       </div>
                     </>
                   )}
+                  <div className="w-full h-12  flex items-start justify-start">
+                    <Button
+                      variant={"ghost"}
+                      onClick={handlePaste}
+                      size={"sm"}
+                      type="button"
+                    >
+                      Colar Redação
+                    </Button>
+                  </div>
                   <div className="flex items-center space-x-2">
                     <Checkbox
                       id="terms"

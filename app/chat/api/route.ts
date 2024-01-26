@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
-export async function GET(request: NextApiRequest, response: NextApiResponse) {
-  return response.json({ message: "/api/route" });
+export async function GET(req: Request) {
+  return Response.json({ message: "/api/route" });
 }
