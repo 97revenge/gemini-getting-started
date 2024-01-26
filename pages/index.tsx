@@ -117,35 +117,7 @@ export default function Home() {
                       </>
                     )}
                   </div>
-                  <div className="h-auto py-2 relative bottom-1">
-                    <Popover>
-                      <div className="flex flex-row w-[48px] gap-x-2 items-start justify-between align-baseline ">
-                        <Button
-                          className="w-3 ml-2"
-                          onClick={() =>
-                            setTempState((state) => state + tempState)
-                          }
-                        >
-                          +
-                        </Button>
-                        <Input
-                          id="number"
-                          defaultValue=""
-                          value={tempState}
-                          {...register("temperature")}
-                          className="w-12 h-8"
-                        />
-                        <Button
-                          onClick={() =>
-                            setTempState((state) => state - tempState)
-                          }
-                          className="w-3"
-                        >
-                          -
-                        </Button>
-                      </div>
-                    </Popover>
-                  </div>
+                  <div className="h-auto py-2 relative bottom-1"></div>
                 </div>
                 <div className="grid w-full gap-2">
                   <Textarea
@@ -183,15 +155,6 @@ export default function Home() {
                     >
                       Colar Redação
                     </Button>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="terms"
-                      onClick={() => {
-                        register("terms", { value: true });
-                      }}
-                    />
-                    <Label htmlFor="terms">Aceito os termos e condições </Label>
                   </div>
 
                   <Button size={"default"} type="submit">

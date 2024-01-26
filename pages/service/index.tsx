@@ -37,14 +37,11 @@ export default function Page({
           </div>
           <div className="px-12 ">
             <Card className=" p-4 rounded-xl  text-xl bg-transparent ">
-              <div className="p-2 w-full  gap-x-6 flex items-center justify-center">
-                <BadgeDemo badge="normal" />
-              </div>
               <div
                 ref={targetRef}
                 className="h-auto bg-white p-2 border-transparent bg-sgradient-to-r from-gray-100 to-gray-200 rounded-xl gap-y-2"
               >
-                <Markdown>{markdown}</Markdown>
+                <Markdown className={"p-2"}>{markdown}</Markdown>
               </div>
               <div className="w-full flex flex-col gap-y-2 items-center justify-center p-2">
                 <Button
