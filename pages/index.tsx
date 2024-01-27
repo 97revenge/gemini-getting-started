@@ -1,29 +1,30 @@
-import { RadioGroupDemo } from "@/components/RadioGroup";
-import { Checkbox } from "@/components/ui/checkbox";
-
+import { CalendarIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import "@/styles/globals.css";
+import { Badge } from "@/components/ui/badge";
 
 import { GetServerSideProps } from "next";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Popover from "@/components/Popover";
+
+import { HoverCardDemo } from "@/components/Hover";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import Image from "next/image";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
   loading: () => <p>Loading...</p>,
   ssr: false,
 });
 
-export default function Home() {
+export default function Home({ data }: { data: any }) {
   const [state, setState] = useState<{ title: string; text: string }>({
     title: "",
     text: "",
@@ -165,15 +166,55 @@ export default function Home() {
             </CardDynamic>
           </div>
         </div>
+        <div className="w-full   absolute  bottom-2 flex item-center justify-center">
+          <HoverCardDemo>
+            <Avatar>
+              <AvatarImage src={data.avatar_url} />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <div className="space-y-1">
+              <h4 className="text-sm font-semibold">{data.name}</h4>
+              <h1 className=" text-sm ">
+                O presente é deles; o futuro, para o qual eu realmente fiz a
+                minha obra, é meu - <b>Nikola Tesla</b>
+              </h1>
+              <div className="flex flex-row  gap-x-2">
+                <Badge>
+                  <Link href={data.blog}>Portfólio</Link>
+                </Badge>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"https://api.iconify.design/mdi:github.svg"}
+                  alt="github icon"
+                  onClick={() => route.push(data.html_url)}
+                />
+              </div>
+              <div className="flex items-center pt-2">
+                <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
+
+                <span className="text-xs text-muted-foreground">
+                  {data.location}
+                </span>
+              </div>
+            </div>
+          </HoverCardDemo>
+        </div>
       </div>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await fetch("https://api.github.com/users/97revenge", {
+    next: { revalidate: 3600 },
+  });
+
+  const data = await response.json();
+
   return {
     props: {
-      hello: "ok",
+      data,
     },
   };
 };
