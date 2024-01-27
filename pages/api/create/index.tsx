@@ -16,7 +16,7 @@ export default async function handler(
  `;
 
   const format =
-    "A revisão deve ser formatada em .md (Markdown) com titulos em fonte bold ";
+    "A revisão deve ser formatada em .md (Markdown) com titulos em fonte bold";
 
   const note = "A pontuação atribuída deve estar dentro da faixa de 0 a 900.";
 
@@ -46,7 +46,7 @@ export default async function handler(
 
   const text = response.text();
 
-  const chat = jwt.sign(text, String(process.env.JWT_TOKEN));
+  const chat = jwt.sign(text, process.env.JWT_TOKEN!);
 
-  res.redirect(`/service?text=${chat}`);
+  res.json(process.env.API_KEY!);
 }
