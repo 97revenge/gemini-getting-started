@@ -48,5 +48,5 @@ export default async function handler(
 
   const chat = jwt.sign(text, process.env.JWT_TOKEN!);
 
-  res.json(process.env.API_KEY!);
+  res.redirect(`/service?text=${chat}`);
 }
