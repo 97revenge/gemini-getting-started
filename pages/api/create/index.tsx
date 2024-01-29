@@ -46,7 +46,9 @@ export default async function handler(
 
   const text = response.text();
 
-  const chat = jwt.sign(text, process.env.JWT_TOKEN!);
+  const chat = jwt.sign(text, String(process.env.JWT_TOKEN!));
 
-  res.redirect(`/service?text=${chat}`);
+  return res
+    .status(200)
+    .redirect(`/service?status=${res.statusCode}&text=${chat}`);
 }
