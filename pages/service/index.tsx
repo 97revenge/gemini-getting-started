@@ -46,7 +46,33 @@ export default function Page({
         <div className="w-auto h-auto ">
           <div className="w-full h-full flex items-center justify-center  p-12   ">
             <AlertDemo>
-              {" "}
+              <form className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
+                <input
+                  placeholder="Email"
+                  required
+                  type="text"
+                  className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
+                />
+                <Button
+                  variant={"default"}
+                  size={"lg"}
+                  className="hover:bg-green-500"
+                  onClick={() =>
+                    route.push({
+                      pathname: `${location.origin}/api/send`,
+                      query: `text=${text}`,
+                    })
+                  }
+                >
+                  {" "}
+                  Enviar no email
+                </Button>
+              </form>
+              <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque.
+              </p>
+
               <Button
                 variant={"secondary"}
                 onClick={() => toPDF()}

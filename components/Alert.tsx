@@ -32,26 +32,7 @@ export default function AlertDemo({ ...props }) {
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
             quae. explicabo. Sed ut perspiciatis unde omnis.
           </p>
-          <form className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
-            <input
-              placeholder="Email"
-              required
-              type="text"
-              className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
-            />
-            <Button
-              variant={"default"}
-              size={"lg"}
-              className="hover:bg-green-500"
-            >
-              {" "}
-              Enviar no email
-            </Button>
-          </form>
-          <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque.
-          </p>
+
           <div {...props}></div>
         </div>
       </div>
