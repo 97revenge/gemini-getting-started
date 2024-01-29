@@ -66,24 +66,30 @@ export default function Home({ data }: { data: any }) {
 
   return (
     <>
-      <div className=" h-[100%] w-[100%] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
-        <div className="  flex flex-col sm:flex-row md:flex-row  items-center justify-center ">
-          <div className="   justify-center   text-center py-6 xl:px-4 lg:px-4 md:px-4 sm:py-6  ">
-            <h2 className="text-3xl font-bold text-white md:text-3xl w-full">
-              Correção do Enem pela {/*  {...} */}
-              <div>
-                <div className="flex w-full items-center justify-center align-baseline">
-                  <Image
-                    alt="gemini icon"
-                    width={250}
-                    height={250}
-                    src={"https://api.iconify.design/logos:google-gemini.svg"}
-                  />
-                </div>
+      <div className=" h-[100%] flex h-screen w-full items-center justify-center bg-gray-100 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-gray-200 to-sky-900">
+        <div className="  flex flex-col sm:flex-row md:flex-row  items-center justify-center p-2 ">
+          <div className="mx-auto max-w-screen-xl px-4  lg:flex lg:h-screen lg:items-center m-2 w-full rounded-2xl ">
+            <div className="mx-auto max-w-xl text-center ">
+              <div className="   justify-center   text-center py-6 xl:px-4 lg:px-4 md:px-4 sm:py-6   ">
+                <h2 className="bg-gradient-to-b from-blue-400 via-blue-500 to-sky-500 bg-clip-text text-2xl font-extrabold text-transparent sm:text-5xl ">
+                  Correção do Enem pela {/*  {...} */}
+                  <div>
+                    <div className="flex w-full items-center justify-center align-baseline">
+                      <Image
+                        alt="gemini icon"
+                        width={250}
+                        height={250}
+                        src={
+                          "https://api.iconify.design/logos:google-gemini.svg"
+                        }
+                      />
+                    </div>
+                  </div>
+                </h2>
               </div>
-            </h2>
+            </div>
           </div>
-          <div className="flex h-screen  items-center relative bottom-16 xl:bottom-0 lg:bottom-0 md:bottom-0 ">
+          <div className="flex h-screen  items-start xl:items-center lg:items-center ">
             <CardDynamic>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid w-full items-center gap-y-2 ">
@@ -166,40 +172,40 @@ export default function Home({ data }: { data: any }) {
             </CardDynamic>
           </div>
         </div>
-        <div className="w-full   absolute  bottom-2 flex item-center justify-center">
-          <HoverCardDemo>
-            <Avatar>
-              <AvatarImage src={data.avatar_url} />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <div className="space-y-1">
-              <h4 className="text-sm font-semibold">{data.name}</h4>
-              <h1 className=" text-sm ">
-                O presente é deles; o futuro, para o qual eu realmente fiz a
-                minha obra, é meu - <b>Nikola Tesla</b>
-              </h1>
-              <div className="flex flex-row  gap-x-2">
-                <Badge>
-                  <Link href={data.blog}>Portfólio</Link>
-                </Badge>
-                <Image
-                  width={25}
-                  height={25}
-                  src={"https://api.iconify.design/mdi:github.svg"}
-                  alt="github icon"
-                  onClick={() => route.push(data.html_url)}
-                />
-              </div>
-              <div className="flex items-center pt-2">
-                <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
-
-                <span className="text-xs text-muted-foreground">
-                  {data.location}
-                </span>
-              </div>
+      </div>
+      <div className="w-full   absolute  top-[93%] flex item-center justify-center">
+        <HoverCardDemo>
+          <Avatar>
+            <AvatarImage src={data.avatar_url} />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold">{data.name}</h4>
+            <h1 className=" text-sm ">
+              O presente é deles; o futuro, para o qual eu realmente fiz a minha
+              obra, é meu - <b>Nikola Tesla</b>
+            </h1>
+            <div className="flex flex-row  gap-x-2">
+              <Badge>
+                <Link href={data.blog}>Portfólio</Link>
+              </Badge>
+              <Image
+                width={25}
+                height={25}
+                src={"https://api.iconify.design/mdi:github.svg"}
+                alt="github icon"
+                onClick={() => route.push(data.html_url)}
+              />
             </div>
-          </HoverCardDemo>
-        </div>
+            <div className="flex items-center pt-2">
+              <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
+
+              <span className="text-xs text-muted-foreground">
+                {data.location}
+              </span>
+            </div>
+          </div>
+        </HoverCardDemo>
       </div>
     </>
   );
