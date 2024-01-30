@@ -1,7 +1,4 @@
-import { RocketIcon } from "@radix-ui/react-icons";
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function AlertDemo({ ...props }) {
   return (
@@ -17,20 +14,31 @@ export default function AlertDemo({ ...props }) {
         </svg>
       </div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
-          <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-blue-500 sm:text-4xl sm:leading-none">
-            Eu desenvolvo aplicações Web & mobile{" "}
+        <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center  ">
+          <h2 className="mb-6 font-sans text-3xl font-semibold tracking-tight text-blue-500 sm:text-4xl sm:leading-none  ">
+            Sua redação corrigida pela <b className="font-bold ">Gemini IA</b>
             <br className="hidden md:block" />
-            para ajudar a
+            está concluida e
             <span className="relative inline-block mx-3">
-              <div className="absolute inset-0 transform -skew-x-12 bg-blue-500" />
-              <span className="relative text-white">vida das pessoas</span>
+              <div className="absolute inset-0 transform -skew-x-12 bg-blue-500 p-2" />
+              <span className="relative text-white font-bold ">
+                100% disponivel !!!
+              </span>
             </span>
           </h2>
           <p className="mb-6 text-base text-blue-900 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae. explicabo. Sed ut perspiciatis unde omnis.
+            Gemini é o primeiro modelo a superar especialistas humanos em MMLU
+            <Link
+              className="hover:underline"
+              href={
+                "https://cobusgreyling.medium.com/what-is-multi-task-language-understanding-or-mmlu-22e93e036c49"
+              }
+            >
+              (Massive Multitask Language Understanding)
+            </Link>
+            , um método popular para testar conhecimento e habilidades de
+            modelos de IA. Supera o desempenho de última geração em teste de
+            conhecimento e resolução de problemas em ambientes educacionais.
           </p>
 
           <div {...props}></div>

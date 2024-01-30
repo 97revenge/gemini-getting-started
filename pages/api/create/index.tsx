@@ -27,7 +27,7 @@ export default async function handler(
 
     `;
 
-  const result = await model.generateContent({
+  const result = await model.generateContentStream({
     contents: [
       {
         role: "user",

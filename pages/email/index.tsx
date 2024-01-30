@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import "@/styles/globals.css";
 
 export default function page() {
-  const handleRegenerate = () => {
+  const toOrigin = () => {
     window.location.href = location.origin;
   };
 
@@ -14,19 +15,24 @@ export default function page() {
             Sua correção foi enviada ao seu E-mail !
           </h1>
           <p className="pt-2 pb-8 text-xl font-medium text-center text-blue-500">
-            Sua correção de redação do enem passou por processos de revisão,
-            adição de prompt e formatação enquanto trazia sua resposta. Seja
-            livre para re-fazer sua busca com a mesma redação ou com outras
-            redações.
+            Sua correção de redação do enem passou por processos de{" "}
+            <b className="hover:underline">
+              revisão, adição de prompt e formatação enquanto trazia sua
+              resposta
+            </b>
+            . Seja livre para re-fazer sua busca com a mesma redação ou com
+            outras redações.
           </p>
           <Button
             variant={"default"}
             size={"lg"}
             className="px-8 py-3 text-lg font-semibold rounded dark:bg-gray-800 dark:text-gray-50"
           >
-            Deixe sua 🌟 no Github
+            <Link href={"https://github.com/97revenge/gemini-getting-started"}>
+              Deixe sua 🌟 no Github
+            </Link>
           </Button>
-          <Button variant={"link"} onClick={handleRegenerate}>
+          <Button variant={"link"} onClick={toOrigin}>
             voltar ao inicio
           </Button>
         </div>

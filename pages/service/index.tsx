@@ -63,7 +63,7 @@ export default function Page({
                   className="hover:bg-green-500"
                   onClick={() =>
                     route.push({
-                      pathname: `${location.origin}/api/send`,
+                      pathname: `/api/send`,
                       query: `text=${text}&email=${email}`,
                     })
                   }
@@ -73,8 +73,8 @@ export default function Page({
                 </Button>
               </form>
               <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque.
+                Envie sua correção direto para o seu Email. Todos os acessos de
+                privacidade respeitados.
               </p>
 
               <Button
