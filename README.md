@@ -2,6 +2,8 @@
 
 ## Getting Started
 
+[![wakatime](https://wakatime.com/badge/github/97revenge/gemini-getting-started.svg)](https://wakatime.com/badge/github/97revenge/gemini-getting-started)
+
 First, run the development server:
 
 ```bash

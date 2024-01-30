@@ -231,13 +231,13 @@ export default function Home({ data, query }: { data: any; query: any }) {
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
 ) => {
-  // const response = await fetch("https://api.github.com/users/97revenge", {
-  //   next: { revalidate: 3600 },
-  // });
+  const response = await fetch("https://api.github.com/users/97revenge", {
+    next: { revalidate: 3600 },
+  });
 
   const query = ctx.query;
 
-  const data = {};
+  const data = await response.json();
 
   return {
     props: {

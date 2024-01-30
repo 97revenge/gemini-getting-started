@@ -13,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import LayoutDemo from "@/components/Layout";
 import AlertDemo from "@/components/Alert";
+import { useState } from "react";
 
 export default function Page({
   response,
@@ -39,6 +40,8 @@ export default function Page({
       });
   }
 
+  const [email, setEmail] = useState<string>("");
+
   return (
     <>
       {starter}
@@ -52,6 +55,7 @@ export default function Page({
                   required
                   type="text"
                   className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <Button
                   variant={"default"}
@@ -60,7 +64,7 @@ export default function Page({
                   onClick={() =>
                     route.push({
                       pathname: `${location.origin}/api/send`,
-                      query: `text=${text}`,
+                      query: `text=${text}&email=${email}`,
                     })
                   }
                 >

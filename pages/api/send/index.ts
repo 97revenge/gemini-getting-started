@@ -12,20 +12,20 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { text } = req.query;
+  const { text, email } = req.query;
 
   const instance = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: ["empregos97@gmai.com"],
-    subject: "aqui estã sua resacao",
-    react: (
-      <>
-        <>
-          <EmailTemplate />
-        </>
-      </>
-    ),
+    from: "ENEM with Gemini IA <onboarding@resend.dev>",
+    to: email as string,
+    subject: "SUA REDAÇÃO CORRIGIDA PELA GEMINI IA JÁ CHEGOU !!! 🤖",
+    react: EmailTemplate({ markdown: instance }) as string,
   });
+
+  if (error) {
+    return res.status(400).redirect(`/?error=${error}`);
+  }
+
+  res.status(200).redirect(`/service?status=${res.statusCode}`);
 }
