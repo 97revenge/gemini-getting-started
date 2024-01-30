@@ -32,19 +32,18 @@ export default function Page({
   const handleRegenerate = () => {
     route.back();
   };
-  function starter() {
+  (function starter() {
     status == !200 &&
       route.push({
         pathname: "/",
         query: "error=voce teve um erro ",
       });
-  }
+  })();
 
   const [email, setEmail] = useState<string>("");
 
   return (
     <>
-      {starter}
       <div className=" h-[100%]  w-screen  bg-gray-100 bg-[conic-gradient(at_bottom,_var(--tw-gradient-stops))] from-white via-blue-500 to-white">
         <div className="w-auto h-auto ">
           <div className="w-full h-full flex items-center justify-center  p-12   ">
@@ -119,6 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
 ) => {
   const { text, status } = ctx.query;
+  console.log({ text: text, status: status });
   const response = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   return {
