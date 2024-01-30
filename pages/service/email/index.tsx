@@ -1,12 +1,9 @@
 import { Button } from "@/components/ui/button";
 import "@/styles/globals.css";
-import { useRouter } from "next/router";
 
 export default function page() {
-  const route = useRouter();
-
   const handleRegenerate = () => {
-    route.back();
+    window.location.href = location.origin;
   };
 
   return (
