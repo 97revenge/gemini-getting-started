@@ -6,7 +6,11 @@ import "@/styles/globals.css";
 import { usePDF } from "react-to-pdf";
 
 import Markdown from "react-markdown";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from "next";
 import Alert from "@/components/Alert";
 import { BadgeDemo } from "@/components/Badge";
 import { Card } from "@/components/ui/card";
@@ -17,11 +21,11 @@ import { useState } from "react";
 
 export default function Page({
   response,
-  text,
+  token,
   status,
 }: {
   response: any;
-  text: string;
+  token: string;
   status: any;
 }) {
   const route = useRouter();
@@ -63,7 +67,7 @@ export default function Page({
                   onClick={() =>
                     route.push({
                       pathname: `/api/send`,
-                      query: `text=${text}&email=${email}`,
+                      query: `text=${token}&email=${email}`,
                     })
                   }
                 >
@@ -118,14 +122,17 @@ export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
 ) => {
   const { text, status } = ctx.query;
-  console.log({ text: text, status: status });
+
+  const token = text;
+
+  console.log({ text: text, status: status, token: token });
   const response = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   return {
     props: {
       status,
       response,
-      text,
+      token,
     },
   };
 };
