@@ -27,5 +27,5 @@ export default async function handler(
     return res.status(400).redirect(`/?error=${error}`);
   }
 
-  res.status(200).redirect(`/service?status=${res.statusCode}`);
+  res.status(200).redirect(`/service/email`);
 }
