@@ -28,6 +28,7 @@ export default function Page({
   token: string;
   status: any;
 }) {
+  "use client";
   const route = useRouter();
 
   const { toPDF, targetRef } = usePDF({ filename: "IA_ENEM_REVISAO.pdf" });
@@ -44,6 +45,13 @@ export default function Page({
       });
   })();
 
+  const handleText = () => {
+    return route.push({
+      pathname: `/api/send`,
+      query: `text=${markdown}&email=${email}`,
+    });
+  };
+
   const [email, setEmail] = useState<string>("");
 
   return (
@@ -59,20 +67,17 @@ export default function Page({
                   type="text"
                   className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
                   onChange={(e) => setEmail(e.target.value)}
+                  disabled
                 />
                 <Button
                   variant={"default"}
                   size={"lg"}
-                  className="hover:bg-green-500"
-                  onClick={() =>
-                    route.push({
-                      pathname: `/api/send`,
-                      query: `text=${token}&email=${email}`,
-                    })
-                  }
+                  className="hover:bg-green-500 bg-red-900"
+                  onClick={handleText}
+                  disabled
                 >
                   {" "}
-                  Enviar no email
+                  desabilitado no momento
                 </Button>
               </form>
               <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
@@ -123,16 +128,13 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   const { text, status } = ctx.query;
 
-  const token = text;
-
-  console.log({ text: text, status: status, token: token });
+  console.log({ text: text, status: status });
   const response = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   return {
     props: {
       status,
       response,
-      token,
     },
   };
 };
