@@ -5,8 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prompt =
-    "me de um texto para eu fazer testes dentro da gemini ia , talvez o maximo de caracteres que consiga me entregar, pode buscar um tema aleatório tambem. respire fundo e se esforce nisto !!!";
+  const prompt = " give me an little text about dogs";
 
   const result = model.generateContentStream({
     contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -14,11 +13,10 @@ export default async function handler(
 
   let text = "";
 
-  for await (const chunk of (await result).stream) {
-    const chunkText = chunk.text();
-    console.log(chunkText);
-    text += chunkText;
-  }
+  Array.from([(await result).stream]).map((data: Record<string, any>) => {
+    const chunk = data.text();
+    text += chunk;
+  });
 
   return res.status(200).json({
     message: text,

@@ -6,18 +6,16 @@ import "@/styles/globals.css";
 import { usePDF } from "react-to-pdf";
 
 import Markdown from "react-markdown";
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from "next";
-import Alert from "@/components/Alert";
-import { BadgeDemo } from "@/components/Badge";
-import { Card } from "@/components/ui/card";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { Button } from "@/components/ui/button";
-import LayoutDemo from "@/components/Layout";
 import AlertDemo from "@/components/Alert";
-import { useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  HtmlHTMLAttributes,
+  InputHTMLAttributes,
+  MouseEventHandler,
+  useState,
+} from "react";
 
 export default function Page({
   response,
@@ -49,10 +47,11 @@ export default function Page({
 
   const [email, setEmail] = useState<string>("");
 
-  const handleText = () => {
-    return route.push({
-      pathname: `/api/send`,
-      query: `text=${value}&email=${email}`,
+  const handleText = (e: any) => {
+    e.preventDefault();
+    route.push({
+      pathname: "/api/send",
+      query: `text=${text}&email=${email}`,
     });
   };
 
@@ -131,7 +130,10 @@ export const getServerSideProps: GetServerSideProps = async (
   console.log({ text: text, status: status });
   const response = await jwt.verify(
     String(text),
-    String(process.env.JWT_TOKEN)
+    String(process.env.JWT_TOKEN),
+    {
+      ignoreExpiration: true,
+    }
   );
 
   return {

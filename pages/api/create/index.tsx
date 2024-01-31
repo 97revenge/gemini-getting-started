@@ -1,4 +1,5 @@
 import { model } from "@/lib/gemini/model";
+import { Model } from "@/lib/prompts/utils";
 import jwt from "jsonwebtoken";
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -10,10 +11,12 @@ export default async function handler(
   const title = req.query.title;
   const responseText = req.query.text;
 
-  const prompt = `Por favor, forneça uma revisão para a redação do ENEM que será entregue. Os detalhes necessários são os seguintes :
- TITULO DA REDAÇÃO  : ${title}
- REDAÇÃO : ${responseText}
- `;
+  //   const prompt = `Por favor, forneça uma revisão para a redação do ENEM que será entregue. Os detalhes necessários são os seguintes :
+  //  TITULO DA REDAÇÃO  : ${title}
+  //  REDAÇÃO : ${responseText}
+  //  `;
+
+  const prompt = Model.prompt(title, responseText);
 
   const format =
     "A revisão deve ser formatada em .md (Markdown) com titulos em fonte bold";
