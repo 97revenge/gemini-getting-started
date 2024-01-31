@@ -42,9 +42,11 @@ export default async function handler(
     ],
   });
 
-  const response = await result.response;
-
-  const text = response.text();
+  let text = "";
+  for await (const chunk of result.stream) {
+    const chunkText = chunk.text();
+    text += chunkText;
+  }
 
   const chat = jwt.sign(text, String(process.env.JWT_TOKEN!));
 

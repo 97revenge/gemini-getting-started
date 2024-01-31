@@ -17,22 +17,24 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import LayoutDemo from "@/components/Layout";
 import AlertDemo from "@/components/Alert";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function Page({
   response,
-  token,
   status,
+  text,
 }: {
   response: any;
-  token: string;
   status: any;
+  text: any;
 }) {
   "use client";
   const route = useRouter();
 
   const { toPDF, targetRef } = usePDF({ filename: "IA_ENEM_REVISAO.pdf" });
   const markdown = `${response}`;
+
+  const [value, setValue] = useState<string>(text);
 
   const handleRegenerate = () => {
     route.back();
@@ -45,14 +47,14 @@ export default function Page({
       });
   })();
 
+  const [email, setEmail] = useState<string>("");
+
   const handleText = () => {
     return route.push({
       pathname: `/api/send`,
-      query: `text=${markdown}&email=${email}`,
+      query: `text=${value}&email=${email}`,
     });
   };
-
-  const [email, setEmail] = useState<string>("");
 
   return (
     <>
@@ -67,17 +69,15 @@ export default function Page({
                   type="text"
                   className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
                   onChange={(e) => setEmail(e.target.value)}
-                  disabled
                 />
                 <Button
                   variant={"default"}
                   size={"lg"}
-                  className="hover:bg-green-500 bg-red-900"
+                  className="hover:bg-green-500 "
                   onClick={handleText}
-                  disabled
                 >
                   {" "}
-                  desabilitado no momento
+                  Enviar no email
                 </Button>
               </form>
               <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
@@ -129,12 +129,16 @@ export const getServerSideProps: GetServerSideProps = async (
   const { text, status } = ctx.query;
 
   console.log({ text: text, status: status });
-  const response = jwt.verify(String(text), String(process.env.JWT_TOKEN));
+  const response = await jwt.verify(
+    String(text),
+    String(process.env.JWT_TOKEN)
+  );
 
   return {
     props: {
       status,
       response,
+      text,
     },
   };
 };
