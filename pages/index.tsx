@@ -1,5 +1,6 @@
 import { CalendarIcon } from "@radix-ui/react-icons";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Grommet } from "grommet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,7 @@ import { HoverCardDemo } from "@/components/Hover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import Image from "next/image";
+import { textSchema } from "@/lib/zod/textSchema";
 
 const CardDynamic = dynamic(() => import("../components/Card"), {
   loading: () => <p>Loading...</p>,
@@ -32,15 +34,15 @@ export default function Home({ data, query }: { data: any; query: any }) {
     text: "",
   });
 
-  const [tempState, setTempState] = useState<number>(0.2);
-
   const route = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(textSchema),
+  });
 
   const onSubmit = (data: any) => {
     route.push({
@@ -53,14 +55,9 @@ export default function Home({ data, query }: { data: any; query: any }) {
 
   const handlePaste = async () => {
     try {
-      // Read the text from the clipboard
       const textFromClipboard = await navigator.clipboard.readText();
 
-      // Set the clipboard content in the component state
       setClipboardContent(textFromClipboard);
-
-      // Do something with the pasted content
-      console.log("Pasted content:", textFromClipboard);
     } catch (error) {
       console.error("Error reading from clipboard:", error);
     }
@@ -155,9 +152,16 @@ export default function Home({ data, query }: { data: any; query: any }) {
                               : "text-green-500"
                           }
                         >
-                          {state.text.length < 500
-                            ? `${state.text.length} - Seu texto tem poucas caracteres`
-                            : `${state.text.length} - seu texto esta no padrao ENEM`}
+                          {state.text.length < 500 ? (
+                            `${state.text.length} - o seu text nao esta no padrao ENEM`
+                          ) : state.text.length > 3500 ? (
+                            <span className="text-red-700">
+                              {state.text.length} - Sua redação precisa pode ter
+                              no maximo 3500 caracteres
+                            </span>
+                          ) : (
+                            `${state.text.length} - seu texto esta no padrao ENEM`
+                          )}
                         </div>
                       </>
                     )}

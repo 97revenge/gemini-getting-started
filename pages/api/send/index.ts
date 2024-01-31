@@ -17,7 +17,7 @@ export default async function handler(
   const instance = jwt.verify(String(text), String(process.env.JWT_TOKEN));
 
   const { data, error } = await resend.emails.send({
-    from: "ENEM with Gemini IA <onboarding@resend.dev>",
+    from: `ENEM with Gemini IA <naoresponda@enem.ia>`,
     to: email as string,
     subject: "SUA REDAÇÃO CORRIGIDA PELA GEMINI IA JÁ CHEGOU !!! 🤖",
     react: EmailTemplate({ markdown: instance }) as string,
