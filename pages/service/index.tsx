@@ -1,6 +1,12 @@
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/router";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+
 import "@/styles/globals.css";
 
 import { usePDF } from "react-to-pdf";
@@ -65,16 +71,27 @@ export default function Page({
                       type="text"
                       className="flex-grow w-full h-12 px-4 mb-3 text-blue-900 transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
                       onChange={(e) => setEmail(e.target.value)}
+                      disabled
                     />
-                    <Button
-                      variant={"default"}
-                      size={"lg"}
-                      className="hover:bg-green-500 "
-                      onClick={handleText}
-                    >
-                      {" "}
-                      Enviar no email
-                    </Button>
+                    <HoverCard>
+                      <HoverCardTrigger>
+                        <Button
+                          variant={"default"}
+                          size={"lg"}
+                          className="hover:bg-green-500 bg-red-500 "
+                          onClick={handleText}
+                          disabled
+                        >
+                          {" "}
+                          Indisponivel no momento
+                        </Button>
+                      </HoverCardTrigger>
+                      <HoverCardContent className="text-sm">
+                        O dominio de E-mails da aplicação ainda nao foi
+                        verificado. esta funcionalidade ficará disponivel em
+                        mais ou menos 72 horas
+                      </HoverCardContent>
+                    </HoverCard>
                   </form>
                   <p className="max-w-md mb-10 text-xs tracking-wide text-blue-900 sm:text-sm sm:mx-auto md:mb-16">
                     Envie sua correção direto para o seu Email. Todos os acessos
