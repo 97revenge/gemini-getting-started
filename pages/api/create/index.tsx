@@ -11,11 +11,6 @@ export default async function handler(
   const title = req.query.title;
   const responseText = req.query.text;
 
-  //   const prompt = `Por favor, forneça uma revisão para a redação do ENEM que será entregue. Os detalhes necessários são os seguintes :
-  //  TITULO DA REDAÇÃO  : ${title}
-  //  REDAÇÃO : ${responseText}
-  //  `;
-
   const prompt = Model.prompt(title, responseText);
 
   const format =
@@ -52,6 +47,10 @@ export default async function handler(
   }
 
   const chat = jwt.sign(text, String(process.env.JWT_TOKEN!));
+
+  if (res.statusCode === 504) {
+    res.redirect('/?error="voce teve um erro "');
+  }
 
   return res
     .status(200)

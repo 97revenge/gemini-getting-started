@@ -1,8 +1,12 @@
+import { Grommet, Box } from "grommet";
 import Link from "next/link";
 
 export default function AlertDemo({ ...props }) {
   return (
-    <div className="relative  w-screen">
+    <Box
+      className="relative  w-screen h-[90%]"
+      animation={{ delay: 400, duration: 400, type: "slideUp" }}
+    >
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"
@@ -44,6 +48,6 @@ export default function AlertDemo({ ...props }) {
           <div {...props}></div>
         </div>
       </div>
-    </div>
+    </Box>
   );
 }

@@ -1,5 +1,11 @@
 import { CalendarIcon } from "@radix-ui/react-icons";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Grommet } from "grommet";
 import { Button } from "@/components/ui/button";
@@ -100,18 +106,30 @@ export default function Home({ data, query }: { data: any; query: any }) {
                       <Label htmlFor="title" className="p-1">
                         Titulo
                       </Label>
-                      <Input
-                        id="title"
-                        className="shadow-sm"
-                        {...register("title")}
-                        placeholder="Titulo da  redação"
-                        onChange={(e) =>
-                          setState({
-                            ...state,
-                            title: e.target.value,
-                          })
-                        }
-                      />
+                      <HoverCard>
+                        <HoverCardTrigger>
+                          {" "}
+                          <Input
+                            id="title"
+                            className="shadow-sm"
+                            {...register("title")}
+                            placeholder="Titulo da  redação"
+                            onChange={(e) =>
+                              setState({
+                                ...state,
+                                title: e.target.value,
+                              })
+                            }
+                          />
+                        </HoverCardTrigger>
+                        <HoverCardContent className="text-sm">
+                          O título não é obrigatório na redação do Enem. Ele não
+                          é considerado em nenhuma das cinco competências
+                          avaliativas que orientam os corretores na hora de dar
+                          uma nota ao texto.
+                        </HoverCardContent>
+                      </HoverCard>
+
                       {state.title && (
                         <>
                           <div
@@ -154,7 +172,7 @@ export default function Home({ data, query }: { data: any; query: any }) {
                         >
                           {state.text.length < 500 ? (
                             `${state.text.length} - o seu text nao esta no padrao ENEM`
-                          ) : state.text.length > 3500 ? (
+                          ) : state.text.length > 4000 ? (
                             <span className="text-red-700">
                               {state.text.length} - Sua redação precisa pode ter
                               no maximo 3500 caracteres

@@ -12,7 +12,7 @@ export default function CardWithForm({ ...props }) {
   return (
     <Card className="xl:w-[700px] lg:w-[700px] md:w-[600px] sm:w-[200px] shadow-lg ">
       <CardHeader className="relative top-1">
-        <CardTitle className="text-xl">Criar texto</CardTitle>
+        <CardTitle className="text-xl">Criar Correção </CardTitle>
         <CardDescription className="text-xl">
           Correção de texto do Enem pela Gemini IA 🚀
         </CardDescription>
