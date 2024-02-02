@@ -25,34 +25,38 @@ export default async function handler(
 
     `;
 
-  const result = await model.generateContentStream({
-    contents: [
-      {
-        role: "user",
-        parts: [
-          { text: prompt },
-          { text: note },
-          { text: revision },
-          { text: aditional },
-          { text: format },
-        ],
-      },
-    ],
-  });
+  try {
+    const result = await model.generateContentStream({
+      contents: [
+        {
+          role: "user",
+          parts: [
+            { text: prompt },
+            { text: note },
+            { text: revision },
+            { text: aditional },
+            { text: format },
+          ],
+        },
+      ],
+    });
 
-  let text = "";
-  for await (const chunk of result.stream) {
-    const chunkText = chunk.text();
-    text += chunkText;
+    let text = "";
+    for await (const chunk of result.stream) {
+      const chunkText = chunk.text();
+      text += chunkText;
+    }
+
+    const chat = jwt.sign(text, String(process.env.JWT_TOKEN!));
+
+    if (res.statusCode === 504) {
+      res.redirect('/?error="voce teve um erro "');
+    }
+
+    return res
+      .status(200)
+      .redirect(`/service?status=${res.statusCode}&text=${chat}`);
+  } catch (err) {
+    res.redirect(`/?error=${err}`);
   }
-
-  const chat = jwt.sign(text, String(process.env.JWT_TOKEN!));
-
-  if (res.statusCode === 504) {
-    res.redirect('/?error="voce teve um erro "');
-  }
-
-  return res
-    .status(200)
-    .redirect(`/service?status=${res.statusCode}&text=${chat}`);
 }

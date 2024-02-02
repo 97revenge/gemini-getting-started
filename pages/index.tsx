@@ -207,7 +207,7 @@ export default function Home({ data, query }: { data: any; query: any }) {
             </div>
           </div>
         </Box>
-        <div className="w-full   absolute  top-[93%] flex item-center justify-center">
+        <div className="w-[100%] relative bottom-[6%]   h-0 flex item-center justify-center">
           <HoverCardDemo>
             <Avatar>
               <AvatarImage src={data?.avatar_url} />
