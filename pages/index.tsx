@@ -42,11 +42,7 @@ export default function Home({ data, query }: { data: any; query: any }) {
 
   const route = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: zodResolver(textSchema),
   });
 
