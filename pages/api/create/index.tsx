@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
+export const maxDuration = 100;
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -13,17 +15,13 @@ export default async function handler(
 
   const prompt = Model.prompt(title, responseText);
 
-  const format =
-    "A revisão deve ser formatada em .md (Markdown) com titulos em fonte bold";
+  const format = Model.format;
 
-  const note = "A pontuação atribuída deve estar dentro da faixa de 0 a 900.";
+  const note = Model.note;
 
-  const revision =
-    "Ao realizar a revisão, leve em consideração diversos aspectos, incluindo coerência, coesão, correção gramatical, clareza argumentativa e aderência ao tema proposto.";
+  const revision = Model.revision;
 
-  const aditional = `Respire fundo e, com base em uma avaliação criteriosa, forneça um feedback detalhado e construtivo, destacando pontos fortes e áreas que podem ser aprimoradas. Garanta que a revisão seja minuciosa e contribua para o desenvolvimento do autor.
-
-    `;
+  const aditional = Model.aditional;
 
   try {
     const result = await model.generateContentStream({
