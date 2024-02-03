@@ -37,6 +37,9 @@ export default async function handler(
           ],
         },
       ],
+      generationConfig: {
+        maxOutputTokens: 1000,
+      },
     });
 
     let text = "";
