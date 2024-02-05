@@ -52,20 +52,28 @@ export default function Home({ data, query }: { data: any; query: any }) {
   });
 
   const onSubmit = (data: any) => {
-    toast.loading("Carregando ...");
+    toast.loading("Carregando ...", { duration: 6000 }) &&
+      setTimeout(() => {
+        toast.success("Correção  gerada com  sucesso !!! ");
+      }, 6000);
     route.push({
       pathname: "api/create",
       query: `title=${data.title}?text=${data.text}`,
     });
   };
 
-  const [clipboardContent, setClipboardContent] = useState("");
+  const [clipboardContent, setClipboardContent] = useState<string>("");
 
   const handlePaste = async () => {
     try {
       const textFromClipboard = await navigator.clipboard.readText();
-
       setClipboardContent(textFromClipboard);
+
+      if (clipboardContent.length > 0) {
+        toast.success("Copiado com  sucesso ! ");
+      } else {
+        toast.error("nao conseguimos copiar 😢");
+      }
     } catch (error) {
       console.error("Error reading from clipboard:", error);
     }
@@ -81,7 +89,10 @@ export default function Home({ data, query }: { data: any; query: any }) {
           className="  flex h-screen w-full items-center justify-center bg-gray-100 bg-[conic-gradient(at_bottom,_var(--tw-gradient-stops))] from-white via-blue-500 to-white"
         >
           <div className="bg-transparent text-transparent">
-            {errors.text?.message && toast.error(String(errors.text?.message))}
+            {errors.text?.message &&
+              toast.error(String(errors.text?.message), {
+                duration: 1000,
+              })}
           </div>
 
           <div className=" h-[100%] flex flex-col sm:flex-row md:flex-row  items-center justify-center p-2  ">
