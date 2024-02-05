@@ -1,10 +1,11 @@
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { toast, Toaster } from "react-hot-toast";
 
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { CalendarIcon } from "@radix-ui/react-icons";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Grommet } from "grommet";
@@ -39,14 +40,19 @@ export default function Home({ data, query }: { data: any; query: any }) {
     title: "",
     text: "",
   });
-
+  ("use client");
   const route = useRouter();
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(textSchema),
   });
 
   const onSubmit = (data: any) => {
+    toast.loading("Carregando ...");
     route.push({
       pathname: "api/create",
       query: `title=${data.title}?text=${data.text}`,
@@ -68,10 +74,16 @@ export default function Home({ data, query }: { data: any; query: any }) {
   return (
     <>
       <Grommet full>
+        <Toaster position="top-center" />
+
         <Box
           animation={{ delay: 450, duration: 450, type: "fadeIn" }}
           className="  flex h-screen w-full items-center justify-center bg-gray-100 bg-[conic-gradient(at_bottom,_var(--tw-gradient-stops))] from-white via-blue-500 to-white"
         >
+          <div className="bg-transparent text-transparent">
+            {errors.text?.message && toast.error(String(errors.text?.message))}
+          </div>
+
           <div className=" h-[100%] flex flex-col sm:flex-row md:flex-row  items-center justify-center p-2  ">
             <div className="mx-auto max-w-screen-xl px-4  lg:flex lg:h-screen lg:items-center m-2 w-full rounded-2xl  ">
               <div className="mx-auto max-w-xl text-center shadow-lg rounded-xl">
@@ -193,6 +205,7 @@ export default function Home({ data, query }: { data: any; query: any }) {
                     <Button size={"default"} type="submit">
                       Enviar
                     </Button>
+
                     {query?.error && (
                       <>
                         <div className="text-center text-red-800 font-bold text-md">
