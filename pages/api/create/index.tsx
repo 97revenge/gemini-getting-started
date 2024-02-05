@@ -59,6 +59,6 @@ export default async function handler(
       .status(200)
       .redirect(`/service?status=${res.statusCode}&text=${chat}`);
   } catch (err) {
-    res.redirect(`/?error=${err}`);
+    res.status(504).redirect(`/?error=${err}`);
   }
 }
