@@ -1,5 +1,7 @@
 import { toast, Toaster } from "react-hot-toast";
 
+import cookies from "next/headers";
+
 import {
   HoverCard,
   HoverCardContent,
